@@ -1,57 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import LeadsList from './LeadsList';
 import FiltroEstado from './FiltroEstado';
-import LeadsData from './LeadsData';
-import DummyData from './DummyData';
+import FiltroPorte from './FiltroPorte';
+import LeadsDummyData from './LeadsDummyData';  // for testing purposes (mocking api response)
 import Navbar from './Navbar';
 
-const SearchPage = (props) => {
-  const [cidade, setCidade] = useState('florianopolis');
-  const [estado, setEstado] = useState('All');
-  const [volumeMinimo, setVolumeMinimo] = useState('1');
-  const [leadsListDefault, setLeadsListDefault] = useState();
-  const [leadsList, setLeadsList] = useState();
-  const [dummyData, setDummyData] = useState();
-
-  const fetchData = async () => {
-    const data = LeadsData
-    setLeadsList(data)
-    setLeadsListDefault(data)
-    const data2 = await DummyData
-    console.log(data2)
-    setDummyData(data2)
+class SearchPage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { 
+      estado: "All",
+      municipio: "All",
+      porte: "03",
+      cnae: "11",
+      leadsData: []
+    }
+    this.fetchData = this.fetchData.bind(this)
   }
 
-  const updateEstado = async (estado) => {
-    await setEstado(estado);
-    updateFilters(estado);
-  }
+  fetchData = async () => {
+    const BASE_URL = "https://fintz.herokuapp.com"
+    const param_estado = "uf=" + "SC" // TODO: this.state.estado instead of hardcoded SC
+    const param_municipio = "&municipio=" + "8349" // TODO: this.state.municipio instead of hardcoded 8349
+    const param_porte = "&porte=" + this.state.porte
+    const param_cnae = "&cnae=" + "" // TODO: this.state.cnae instead of hardcoded ''
+    const params = param_estado + param_municipio + param_porte + param_cnae
 
-  const updateFilters = async (estado) => {
-    const filteredEstado = leadsListDefault.filter(lead => {
-      return estado === 'All' ? true : lead.endereco.uf === estado
+    const data = await fetch(BASE_URL + "/api/demos/criteria/leads?" + params)
+      .then((res) => res.json())
+      .then((json) => {
+        return json
     })
-    const multiFilter = leadsListDefault.filter(value => filteredEstado.includes(value));
-    setLeadsList(multiFilter);
+    console.log(data)
+    this.setState({ leadsData: data })
   }
 
-  useEffect(() => { fetchData() }, []);
+  updateEstado = (estado) => {
+    this.state.estado = estado;
+  }
 
-  return (
-    <>
-      <Navbar/>
-      <br></br>
-      <h1 class="is-size-3 mb-3">Fintz Leads</h1>
+  updateMunicipio = (municipio) => {
+    this.state.municipio = municipio;
+  }
 
-      <FiltroEstado
-        estado={estado}
-        onChange={updateEstado}
-      />
-      <button onclick={console.log('hello')} > pesquisar </button>
-      <LeadsList leadsList={dummyData} />
-      {/* <LeadsList leadsList={leadsList} /> */}
-    </>
-  );
+  updatePorte = (porte) => {
+    this.state.porte = porte;
+  }
+
+  updateCnae = (cnae) => {
+    this.state.cnae = cnae;
+  }
+
+  render () {
+    return (
+      <>
+        <Navbar/>
+        <br></br>
+        <h1 class="is-size-3 mb-3">Fintz Leadz</h1>
+
+        <FiltroEstado
+          estado={this.state.estado}
+          onChange={this.updateEstado}
+        />
+
+        <FiltroPorte
+          porte={this.state.porte}
+          onChange={this.updatePorte}
+        />
+
+        <button onClick={this.fetchData} > pesquisar </button>
+        <LeadsList leadsList={ this.state.leadsData } />
+      </>
+    );
+  }
 }
 
 export default SearchPage

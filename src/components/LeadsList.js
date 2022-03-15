@@ -28,10 +28,10 @@ const LeadsList = ({leadsList=[]}) => {
                     <p> <b> Telefone:</b> {lead.contato.telefone1}</p>
                     <p> <b> Natureza Juridica:</b> {lead.empresa.naturezaJuridica.descricao}</p>
                     <p> <b> Capital Social:</b> {lead.empresa.capitalSocial}</p>
-                    <p>
+                    {/* <p>
                       <b> Site: </b> 
-                      <a href={lead.contato.email.split("@")[1]}> www.{lead.contato.email.split("@")[1].toLowerCase()} </a>
-                    </p>
+                      <a href={lead.contato.email ? lead.contato.email.split("@")[1] : ""}> www.{lead.contato.email.split("@")[1].toLowerCase()} </a>
+                    </p> */}
                   </div>
 
                   </div>
