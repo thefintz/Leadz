@@ -16,7 +16,7 @@ const FiltroEstado = ({input:keyword, onChange:updateEstado}) => {
           className="custom-select"
           aria-label="Filter Countries By Countries"
         >
-          <option value="All">Todos os estados</option>
+          <option value="">Todos os estados</option>
           <option value="AP">Amapá</option>
           <option value="MG">Minas Gerais</option>
           <option value="MT">Mato Grosso</option>

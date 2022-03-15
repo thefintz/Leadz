@@ -4,7 +4,7 @@ const LeadsList = ({leadsList=[]}) => {
   const cardStyle = {
     "background": "white",
     "border": "2px solid gray",
-    "margin": "20px",
+    "margin": "10px",
     "padding": "1rem"
   }
   return (
@@ -27,7 +27,7 @@ const LeadsList = ({leadsList=[]}) => {
                     <p> <b> Email:</b> {lead.contato.email}</p>
                     <p> <b> Telefone:</b> {lead.contato.telefone1}</p>
                     <p> <b> Natureza Juridica:</b> {lead.empresa.naturezaJuridica.descricao}</p>
-                    <p> <b> Capital Social:</b> {lead.empresa.capitalSocial}</p>
+                    <p> <b> Capital Social: </b> R${lead.empresa.capitalSocial}</p>
                     {/* <p>
                       <b> Site: </b> 
                       <a href={lead.contato.email ? lead.contato.email.split("@")[1] : ""}> www.{lead.contato.email.split("@")[1].toLowerCase()} </a>

@@ -16,7 +16,7 @@ const FiltroPorte = ({input:keyword, onChange:updatePorte}) => {
           className="custom-select"
           aria-label="Filtrar empresas por porte"
         >
-          {/* <option value="All">Todos os portes</option> */}
+          <option value="">Todos os portes</option>
           <option value="01">Micro</option>
           <option value="03">Pequena</option>
           <option value="05">Médias e grandes</option>

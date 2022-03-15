@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LeadsList from './LeadsList';
 import FiltroEstado from './FiltroEstado';
 import FiltroPorte from './FiltroPorte';
+import FiltroCNAE from './FiltroCNAE';
 import LeadsDummyData from './LeadsDummyData';  // for testing purposes (mocking api response)
 import Navbar from './Navbar';
 
@@ -20,10 +21,10 @@ class SearchPage extends React.Component {
 
   fetchData = async () => {
     const BASE_URL = "https://fintz.herokuapp.com"
-    const param_estado = "uf=" + "SC" // TODO: this.state.estado instead of hardcoded SC
-    const param_municipio = "&municipio=" + "8349" // TODO: this.state.municipio instead of hardcoded 8349
+    const param_estado = "uf=" + this.state.estado
+    const param_municipio = "&municipio=" + "" // TODO: this.state.municipio instead of hardcoded 8349
     const param_porte = "&porte=" + this.state.porte
-    const param_cnae = "&cnae=" + "" // TODO: this.state.cnae instead of hardcoded ''
+    const param_cnae = "&cnae=" + this.state.cnae
     const params = param_estado + param_municipio + param_porte + param_cnae
 
     const data = await fetch(BASE_URL + "/api/demos/criteria/leads?" + params)
@@ -47,7 +48,7 @@ class SearchPage extends React.Component {
     this.state.porte = porte;
   }
 
-  updateCnae = (cnae) => {
+  updateCNAE = (cnae) => {
     this.state.cnae = cnae;
   }
 
@@ -63,12 +64,23 @@ class SearchPage extends React.Component {
           onChange={this.updateEstado}
         />
 
+        <br/>
+        <br/>
         <FiltroPorte
           porte={this.state.porte}
           onChange={this.updatePorte}
         />
 
-        <button onClick={this.fetchData} > pesquisar </button>
+        <br/>
+        <br/>
+        <FiltroCNAE
+          cnae={this.state.cnae}
+          onChange={this.updateCNAE}
+        />
+
+        <br/>
+        <button class="button is-success mt-3 mb-3" onClick={this.fetchData} > pesquisar </button>
+
         <LeadsList leadsList={ this.state.leadsData } />
       </>
     );
