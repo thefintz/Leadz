@@ -56,32 +56,41 @@ class SearchPage extends React.Component {
     return (
       <>
         <Navbar/>
-        <br></br>
-        <h1 class="is-size-3 mb-3">Fintz Leadz</h1>
+        <div class="columns">
 
-        <FiltroEstado
-          estado={this.state.estado}
-          onChange={this.updateEstado}
-        />
+          <div class="column">
+            <br></br>
+            <h1 class="is-size-3 mb-3">Fintz Leadz</h1>
 
-        <br/>
-        <br/>
-        <FiltroPorte
-          porte={this.state.porte}
-          onChange={this.updatePorte}
-        />
+            <FiltroEstado
+              estado={this.state.estado}
+              onChange={this.updateEstado}
+            />
 
-        <br/>
-        <br/>
-        <FiltroCNAE
-          cnae={this.state.cnae}
-          onChange={this.updateCNAE}
-        />
+            <br/>
+            <br/>
+            <FiltroPorte
+              porte={this.state.porte}
+              onChange={this.updatePorte}
+            />
 
-        <br/>
-        <button class="button is-success mt-3 mb-3" onClick={this.fetchData} > pesquisar </button>
+            <br/>
+            <br/>
+            <FiltroCNAE
+              cnae={this.state.cnae}
+              onChange={this.updateCNAE}
+            />
 
-        <LeadsList leadsList={ this.state.leadsData } />
+            <br/>
+            <br/>
+            <button class="button is-success mt-3 mb-3" onClick={this.fetchData} > Pesquisar </button>
+          </div>
+
+          <div class="column is-half">
+            <LeadsList leadsList={ this.state.leadsData } />
+          </div>
+
+        </div>
       </>
     );
   }

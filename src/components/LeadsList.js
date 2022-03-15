@@ -13,13 +13,8 @@ const LeadsList = ({leadsList=[]}) => {
       if (lead) {
         return (
           <div class="columns">
-            <div class="column"/>
-
-            <div class="column is-half has-text-left">
+            <div class="column is-four-fifths has-text-left">
               <div key={lead.empresa.cnpjBasico} style={cardStyle} >
-                <div class="columns">
-
-                  <div class="column">
                     <p> <b> Nome Empresarial:</b> {lead.empresa.nomeEmpresarial}</p>
                     <p> <b> Porte:</b> {lead.empresa.porte.descricao}</p>
                     <p> <b> Localização: </b> {lead.endereco.municipio.descricao}, {lead.endereco.uf} </p>
@@ -32,9 +27,6 @@ const LeadsList = ({leadsList=[]}) => {
                       <b> Site: </b> 
                       <a href={lead.contato.email ? lead.contato.email.split("@")[1] : ""}> www.{lead.contato.email.split("@")[1].toLowerCase()} </a>
                     </p> */}
-                  </div>
-
-                  </div>
               </div>
             </div>
 
