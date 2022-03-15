@@ -3,7 +3,7 @@ import React from 'react';
 const FiltroCNAE = ({input:keyword, onChange:updateCNAE}) => {
   return (
     <>
-      <div className="select is-right" style={{maxWidth: "30rem"}}>
+      <div class="select is-right mx-3" style={{maxWidth: "30rem"}}>
         <select
           /* 
           // here we create a basic select input
