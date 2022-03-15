@@ -13,7 +13,7 @@ jobs:
           node-version: 16
 
       - run: npm ci
-      - run: npm run build
+      - run: CI=false npm run build
 
       - uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
@@ -21,3 +21,4 @@ jobs:
           folder: ./build
           single-commit: true
           silent: false
+
