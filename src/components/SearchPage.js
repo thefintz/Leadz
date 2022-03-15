@@ -10,10 +10,10 @@ class SearchPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = { 
-      estado: "All",
-      municipio: "All",
-      porte: "03",
-      cnae: "11",
+      estado: "",
+      municipio: "",
+      porte: "",
+      cnae: "",
       leadsData: []
     }
     this.fetchData = this.fetchData.bind(this)
