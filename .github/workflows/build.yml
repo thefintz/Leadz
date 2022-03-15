@@ -15,8 +15,8 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          CI: 'false'
-          REACT_APP_PUBLIC_URL: /${{ github.event.repository.name }}
+          DISABLE_ESLINT_PLUGIN: 'true'
+          PUBLIC_URL: /${{ github.event.repository.name }}
 
       - uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
