@@ -87,6 +87,7 @@ class SearchPage extends React.Component {
           </div>
 
           <div class="column is-half">
+            <br/>
             <LeadsList leadsList={ this.state.leadsData } />
           </div>
 
