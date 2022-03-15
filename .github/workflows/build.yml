@@ -13,7 +13,10 @@ jobs:
           node-version: 16
 
       - run: npm ci
-      - run: CI=false npm run build
+      - run: npm run build
+        env:
+          CI: 'false'
+          REACT_APP_PUBLIC_URL: /${{ github.event.repository.name }}
 
       - uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
