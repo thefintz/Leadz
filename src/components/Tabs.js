@@ -2,81 +2,97 @@ import LeadsList from './LeadsList';
 
 const Tabs = ({leadsList=[]}) => {
   return <div>
-    <div class="tabs is-toggle is-fullwidth" id="tabs">
+    <div class="tabs is-boxed is-centered">
       <ul>
-        <li class="is-active" data-tab="1">
-          <a>
-            <span ></span>
-            <span>1</span>
-          </a>
+        <li class="is-active" data-target="1">
+          <a>1</a> 
         </li>
-        <li data-tab="2">
-          <a>
-            <span class=""></span>
-            <span>2</span>
-          </a>
+        <li data-target="2">
+          <a>2</a>
         </li>
-        <li data-tab="3">
-          <a>
-            <span class=""></span>
-            <span>3</span>
-          </a>
+        <li data-target="3">
+          <a>3</a>
         </li>
-        <li data-tab="4">
-          <a>
-            <span class=""></span>
-            <span>4</span>
-          </a>
+        <li data-target="4">
+          <a>4</a>
+        </li>
+        <li data-target="5">
+          <a>5</a>
+        </li>
+        <li data-target="6">
+          <a>6</a>
+        </li>
+        <li data-target="7">
+          <a>7</a>
+        </li>
+        <li data-target="8">
+          <a>8</a>
+        </li>
+        <li data-target="9">
+          <a>9</a>
+        </li>
+        <li data-target="10">
+          <a>10</a>
         </li>
       </ul>
     </div>
-    <div id="tab-content">
-      <LeadsList class="is-active" data-content="1" leadsList={ leadsList.slice(0, 1) } />
-      <LeadsList data-content="2" leadsList={ leadsList.slice(1, 2) } />
-      <LeadsList data-content="3" leadsList={ leadsList.slice(2, 3) } />
-      <LeadsList data-content="4" leadsList={ leadsList.slice(3, 4) } />
+    <div class="px-3" id="tab-content">
+      <div id="1">
+        <LeadsList leadsList={ leadsList.slice(0,10) } />
+      </div>
+      <div id="2" class="is-hidden">
+        <LeadsList leadsList={ leadsList.slice(10,20) } />
+      </div>
+      <div id="3" class="is-hidden">
+        <LeadsList leadsList={ leadsList.slice(20,30) } />
+      </div>
+      <div id="4" class="is-hidden">
+        <LeadsList leadsList={ leadsList.slice(30,40) } />
+      </div>
+      <div id="5" class="is-hidden">
+        <LeadsList leadsList={ leadsList.slice(40,50) } />
+      </div>
+      <div id="6" class="is-hidden">
+        <LeadsList leadsList={ leadsList.slice(50,60) } />
+      </div>
+      <div id="7" class="is-hidden">
+        <LeadsList leadsList={ leadsList.slice(60,70) } />
+      </div>
+      <div id="8" class="is-hidden">
+        <LeadsList leadsList={ leadsList.slice(70,80) } />
+      </div>
+      <div id="9" class="is-hidden">
+        <LeadsList leadsList={ leadsList.slice(80,90) } />
+      </div>
+      <div id="10" class="is-hidden">
+        <LeadsList leadsList={ leadsList.slice(90,100) } />
+      </div>
     </div>
   </div>
 }
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const TABS = [...document.querySelectorAll('#tabs li')];
-  const CONTENT = [...document.querySelectorAll('#tab-content p')];
-  const ACTIVE_CLASS = 'is-active';
-
-  function initTabs() {
-      TABS.forEach((tab) => {
-        tab.addEventListener('click', (e) => {
-          let selected = tab.getAttribute('data-tab');
-          updateActiveTab(tab);
-          updateActiveContent(selected);
-        })
+  const tabs = document.querySelectorAll('.tabs li');
+  const tabContentBoxes = document.querySelectorAll('#tab-content > div');
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(item => item.classList.remove('is-active'));
+      tab.classList.add('is-active');
+  
+      const target = tab.dataset.target;
+      // console.log(target);
+      tabContentBoxes.forEach(box => {
+        if (box.getAttribute('id') === target) {
+          box.classList.remove('is-hidden');
+        } else {
+          box.classList.add('is-hidden');
+        }
       })
-  }
+    })
+  })
 
-  function updateActiveTab(selected) {
-    TABS.forEach((tab) => {
-      if (tab && tab.classList.contains(ACTIVE_CLASS)) {
-        tab.classList.remove(ACTIVE_CLASS);
-      }
-    });
-    selected.classList.add(ACTIVE_CLASS);
-  }
-
-  function updateActiveContent(selected) {
-    CONTENT.forEach((item) => {
-      if (item && item.classList.contains(ACTIVE_CLASS)) {
-        item.classList.remove(ACTIVE_CLASS);
-      }
-      let data = item.getAttribute('data-content');
-      if (data === selected) {
-        item.classList.add(ACTIVE_CLASS);
-      }
-    });
-  }
-  initTabs();
 });
-
 
 export default Tabs

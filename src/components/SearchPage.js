@@ -15,8 +15,7 @@ class SearchPage extends React.Component {
       municipio: "",
       porte: "",
       cnae: "",
-      leadsData: [],
-      activePage: 2
+      leadsData: []
     }
     this.fetchData = this.fetchData.bind(this)
   }
@@ -28,13 +27,12 @@ class SearchPage extends React.Component {
     const param_porte = "&porte=" + this.state.porte
     const param_cnae = "&cnae=" + this.state.cnae
     const params = param_estado + param_municipio + param_porte + param_cnae
-
+    
     const data = await fetch(BASE_URL + "/api/demos/criteria/leads?" + params)
-      .then((res) => res.json())
-      .then((json) => {
-        return json
+    .then((res) => res.json())
+    .then((json) => {
+      return json
     })
-    console.log(data)
     this.setState({ leadsData: data })
   }
 
@@ -52,11 +50,6 @@ class SearchPage extends React.Component {
 
   updateCNAE = (cnae) => {
     this.state.cnae = cnae;
-  }
-
-  updateActivePage = (page) => {
-    console.log(page)
-    this.state.activePage = page
   }
 
   render () {
@@ -95,7 +88,7 @@ class SearchPage extends React.Component {
 
           <div class="column is-half">
             <br/>
-            <Tabs leadsList={ this.state.leadsData }></Tabs>
+            <Tabs class="is-hidden" leadsList={ this.state.leadsData }></Tabs>
             {/* <LeadsList leadsList={ this.state.leadsData } /> */}
           </div>
 
