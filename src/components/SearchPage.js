@@ -5,6 +5,7 @@ import FiltroPorte from './FiltroPorte';
 import FiltroCNAE from './FiltroCNAE';
 import LeadsDummyData from './LeadsDummyData';  // for testing purposes (mocking api response)
 import Navbar from './Navbar';
+import Tabs from './Tabs';
 
 class SearchPage extends React.Component {
   constructor (props) {
@@ -94,29 +95,8 @@ class SearchPage extends React.Component {
 
           <div class="column is-half">
             <br/>
-            <div class="tabs">
-              <ul>
-                <li onClick={() => { this.updateActivePage(0)} } class={ this.state.activePage === 0 ? "is-active" : ""}><a>Pictures</a></li>
-                <li onClick={() => { this.updateActivePage(1)} } class={ this.state.activePage === 1 ? "is-active" : ""}><a>Music</a></li>
-                <li onClick={() => { this.updateActivePage(2)} } class={ this.state.activePage === 2 ? "is-active" : ""}><a>Videos</a></li>
-              </ul>
-            </div>
-            <div class="px-2" id="tab-content">
-              <div id="product-details">
-                <h3 class="is-size-5 title"> Product </h3>
-                <p> ppp </p>
-              </div>
-              <div id="sales-details" class="is-hidden">
-                <h3 class="is-size-5 title"> sales </h3>
-                <p> sss </p>
-              </div>
-              <div id="marketing-details" class="is-hidden">
-                <h3 class="is-size-5 title"> marketing </h3>
-                <p> mmm </p>
-              </div>
-            </div>
-
-            <LeadsList leadsList={ this.state.leadsData } />
+            <Tabs leadsList={ this.state.leadsData }></Tabs>
+            {/* <LeadsList leadsList={ this.state.leadsData } /> */}
           </div>
 
         </div>

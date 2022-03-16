@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+/* added so that Tabs.js can work */
+#tab-content p {
+  display: none;
+}
+
+/* added so that Tabs.js can work */
+#tab-content p.is-active {
+  display: block;
+}
