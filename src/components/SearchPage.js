@@ -15,12 +15,14 @@ class SearchPage extends React.Component {
       municipio: "",
       porte: "",
       cnae: "",
-      leadsData: []
+      leadsData: [],
+      loading: false
     }
     this.fetchData = this.fetchData.bind(this)
   }
 
   fetchData = async () => {
+    this.setState({ loading: true })
     const BASE_URL = "https://fintz.herokuapp.com"
     const param_estado = "uf=" + this.state.estado
     const param_municipio = "&municipio=" + "" // TODO: this.state.municipio instead of hardcoded 8349
@@ -34,6 +36,7 @@ class SearchPage extends React.Component {
       return json
     })
     this.setState({ leadsData: data })
+    this.setState({ loading: false })
   }
 
   updateEstado = (estado) => {
@@ -83,12 +86,17 @@ class SearchPage extends React.Component {
 
             <br/>
             <br/>
-            <button class="button is-success mt-3 mb-3" onClick={this.fetchData} > Pesquisar </button>
+            <button
+              class={this.state.loading ? "button is-success mt-3 mb-3 is-loading" : "button is-success mt-3 mb-3" }
+              onClick={this.fetchData}
+            > Pesquisar 
+            </button>
           </div>
 
           <div class="column is-half">
             <br/>
-            <Tabs class="is-hidden" leadsList={ this.state.leadsData }></Tabs>
+            <Tabs leadsList={ this.state.leadsData }></Tabs>
+            <p class={ this.state.loading ? "" : "is-hidden"}> buscando... </p>
             {/* <LeadsList leadsList={ this.state.leadsData } /> */}
           </div>
 
