@@ -15,18 +15,18 @@ const LeadsList = ({leadsList=[]}) => {
           <div class="columns">
             <div class="column is-four-fifths has-text-left">
               <div key={lead.empresa.cnpjBasico} style={cardStyle} >
-                    <p> <b> Nome Empresarial:</b> {lead.empresa.nomeEmpresarial}</p>
-                    <p> <b> Porte:</b> {lead.empresa.porte.descricao}</p>
-                    <p> <b> Localização: </b> {lead.endereco.municipio.descricao}, {lead.endereco.uf} </p>
-                    <p> <b> Setor: </b> {lead.cnaePrincipal.descricao}</p>
-                    <p> <b> Email:</b> {lead.contato.email}</p>
-                    <p> <b> Telefone:</b> {lead.contato.telefone1}</p>
-                    <p> <b> Natureza Juridica:</b> {lead.empresa.naturezaJuridica.descricao}</p>
-                    <p> <b> Capital Social: </b> R${lead.empresa.capitalSocial}</p>
-                    {/* <p>
-                      <b> Site: </b> 
-                      <a href={lead.contato.email ? lead.contato.email.split("@")[1] : ""}> www.{lead.contato.email.split("@")[1].toLowerCase()} </a>
-                    </p> */}
+                <p> <b> Nome Empresarial:</b> {lead.empresa.nomeEmpresarial}</p>
+                <p> <b> Porte:</b> {lead.empresa.porte.descricao}</p>
+                <p> <b> Localização: </b> {lead.endereco.municipio.descricao}, {lead.endereco.uf} </p>
+                <p> <b> Setor: </b> {lead.cnaePrincipal.descricao}</p>
+                <p> <b> Email:</b> {lead.contato.email}</p>
+                <p> <b> Telefone:</b> {lead.contato.telefone1}</p>
+                <p> <b> Natureza Juridica:</b> {lead.empresa.naturezaJuridica.descricao}</p>
+                <p> <b> Capital Social: </b> R${lead.empresa.capitalSocial}</p>
+                {/* <p>
+                  <b> Site: </b> 
+                  <a href={lead.contato.email ? lead.contato.email.split("@")[1] : ""}> www.{lead.contato.email.split("@")[1].toLowerCase()} </a>
+                </p> */}
               </div>
             </div>
 
